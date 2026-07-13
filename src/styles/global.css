@@ -100,21 +100,67 @@
     color: var(--lichen);
   }
 
-  /* Underlined text link */
+  /*
+   * Text link with an underline that "grows" left-to-right on hover.
+   * A persistent thin lichen underline sits under a moss underline that
+   * expands from 0 to full width — so links always read as links, and the
+   * hover feels like a vine running along the word.
+   */
   .link-vine {
     color: var(--pine);
     font-weight: 500;
-    text-decoration: underline;
-    text-decoration-color: var(--lichen);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
+    padding-bottom: 2px;
+    background-image:
+      linear-gradient(var(--moss), var(--moss)),
+      linear-gradient(var(--lichen), var(--lichen));
+    background-position:
+      0 100%,
+      0 100%;
+    background-size:
+      0% 2px,
+      100% 1px;
+    background-repeat: no-repeat;
     transition:
-      color 120ms ease,
-      text-decoration-thickness 120ms ease;
+      background-size 220ms ease,
+      color 120ms ease;
   }
-  .link-vine:hover {
+  .link-vine:hover,
+  .link-vine:focus-visible {
     color: var(--moss);
-    text-decoration-thickness: 2px;
+    background-size:
+      100% 2px,
+      100% 1px;
+  }
+
+  /*
+   * Header nav link: a tiny leaf sprouts above the label on hover/focus.
+   * Absolutely positioned, so it never shifts the layout.
+   */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.5rem;
+    width: 7px;
+    height: 7px;
+    margin-left: -3.5px;
+    background-color: var(--moss);
+    border-radius: 0 100% 0 100%;
+    transform: scale(0) rotate(0deg);
+    transform-origin: bottom center;
+    opacity: 0;
+    transition:
+      transform 200ms ease,
+      opacity 200ms ease;
+  }
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    transform: scale(1) rotate(-8deg);
+    opacity: 1;
   }
 
   /* Herbarium specimen card */
@@ -225,6 +271,62 @@
   .prose hr {
     border: none;
     border-top: 1px solid var(--line);
+  }
+}
+
+/*
+ * Growth animations — the "living" flourishes.
+ * Kept inside prefers-reduced-motion:no-preference so that, if a visitor asks
+ * for less motion, elements simply render in their final state (never hidden).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Signature vine: the stem draws itself, then leaves unfurl in sequence */
+  .vine-stem,
+  .vine-tendril {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: vine-draw 2s ease forwards;
+  }
+  .vine-tendril {
+    animation-delay: 1.7s;
+    animation-duration: 0.8s;
+  }
+  .vine-leaf {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: bottom center;
+    animation: leaf-unfurl 0.6s ease forwards;
+    animation-delay: var(--leaf-delay, 1s);
+  }
+
+  /* Staggered "grow up" reveal for hero content */
+  .grow-in {
+    opacity: 0;
+    transform: translateY(0.6rem);
+    animation: grow-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation-delay: var(--grow-delay, 0s);
+  }
+
+  @keyframes vine-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes leaf-unfurl {
+    from {
+      opacity: 0;
+      transform: scale(0.2) rotate(-6deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0);
+    }
+  }
+  @keyframes grow-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
