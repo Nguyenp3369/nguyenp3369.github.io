@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import LeafDivider from "../components/LeafDivider.astro";
+import Vine from "../components/Vine.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import PostItem from "../components/PostItem.astro";
 import { SITE } from "../data/site";
@@ -19,34 +20,44 @@ const posts = (await getCollection("blog"))
 
 <Base title={SITE.name}>
   <!-- Hero -->
-  <section class="py-6 sm:py-10">
-    <p class="tag-label mb-3">{SITE.role}</p>
-    <h1 class="font-display text-4xl font-semibold leading-tight sm:text-5xl">
-      Hi, I'm {SITE.name}.
-    </h1>
-    <p class="mt-5 max-w-prose text-lg text-ink-muted">
-      <!-- [PLACEHOLDER: one- or two-sentence positioning statement.] -->
-      I study plant biology at {SITE.institution}, working at the intersection
-      of genomics, computation, and the living green world. This site collects
-      my research, software, writing, and notes from the bench.
-    </p>
-    <div class="mt-7 flex flex-wrap gap-4">
-      <a
-        href={withBase("/about/")}
-        class="bg-pine px-5 py-2.5 font-medium text-paper transition-colors hover:bg-moss"
+  <section class="relative py-6 sm:py-10">
+    <!-- Signature climbing vine, drawn in on load (desktop only) -->
+    <Vine
+      class="pointer-events-none absolute -top-4 right-0 hidden h-[26rem] w-auto text-moss/60 lg:block"
+    />
+
+    <div class="relative max-w-prose">
+      <p class="tag-label grow-in mb-3">{SITE.role}</p>
+      <h1
+        class="grow-in font-display text-4xl font-semibold leading-tight sm:text-5xl"
+        style="--grow-delay:0.08s"
       >
-        About me
-      </a>
-      <a
-        href={withBase("/research/")}
-        class="border border-line px-5 py-2.5 font-medium text-ink transition-colors hover:border-moss hover:text-pine"
-      >
-        Research
-      </a>
+        Hi, I'm {SITE.name}.
+      </h1>
+      <p class="grow-in mt-5 text-lg text-ink-muted" style="--grow-delay:0.16s">
+        <!-- [PLACEHOLDER: one- or two-sentence positioning statement.] -->
+        I study plant biology at {SITE.institution}, working at the intersection
+        of genomics, computation, and the living green world. This site collects
+        my research, software, writing, and notes from the bench.
+      </p>
+      <div class="grow-in mt-7 flex flex-wrap gap-4" style="--grow-delay:0.24s">
+        <a
+          href={withBase("/about/")}
+          class="bg-pine px-5 py-2.5 font-medium text-paper transition-colors hover:bg-moss"
+        >
+          About me
+        </a>
+        <a
+          href={withBase("/research/")}
+          class="border border-line px-5 py-2.5 font-medium text-ink transition-colors hover:border-moss hover:text-pine"
+        >
+          Research
+        </a>
+      </div>
     </div>
   </section>
 
-  <LeafDivider class="mx-auto my-10 w-40 text-moss" />
+  <LeafDivider variant="vein" class="mx-auto my-10 w-40 text-moss" />
 
   <!-- Current focus -->
   <section class="py-4">
@@ -71,6 +82,8 @@ const posts = (await getCollection("blog"))
       </li>
     </ul>
   </section>
+
+  <LeafDivider variant="sprig" class="mx-auto my-10 w-40 text-moss/80" />
 
   <!-- Selected projects -->
   {

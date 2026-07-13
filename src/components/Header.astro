@@ -27,7 +27,7 @@ const isActive = (href: string) => currentPath.startsWith(withBase(href));
                   href={withBase(item.href)}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   class:list={[
-                    "text-sm font-medium transition-colors hover:text-pine",
+                    "nav-link text-sm font-medium transition-colors hover:text-pine",
                     isActive(item.href)
                       ? "text-pine underline decoration-lichen decoration-2 underline-offset-6"
                       : "text-ink-muted",
